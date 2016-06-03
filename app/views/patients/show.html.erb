@@ -1,0 +1,79 @@
+<h2>Paitent</h2>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>Name</td>
+    <td><%= @patient['name'].first['given'].join(' ') %>
+  </tr>
+  <tr>
+    <td>Identifier</td>
+    <td><%= @patient['identifier'].first['label'] %>
+  </tr>
+  <tr>
+    <td>Gender</td>
+    <td><%= @patient['gender']['coding'].first['display'] %>
+  </tr>
+  <tr>
+    <td>Telecom</td>
+    <td>
+        <% @patient['telecom'].each do |tele| %>
+          <p>
+            <%= tele['system'] %>
+            <%= tele['value'] %>
+            <%= tele['user'] %>
+          </p>
+        <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>Birth Date</td>
+    <td><%= @patient['birthDate'] %>
+  </tr>
+  <tr>
+    <td>Address</td>
+    <td>
+      <%= @patient['address'].first['line'].try(:join, " ") %><br/>
+      <%= @patient['address'].first['city'] %><br/>
+      <%= @patient['address'].first['state'] %><br/>
+      <%= @patient['address'].first['zip'] %><br/>
+      <%= @patient['address'].first['country'] %><br/>
+    </td>
+  </tr>
+</table>
+
+<h2>Conditions</h2>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Condition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @conditions['entry'].each do |condition| %>
+      <tr>
+        <td><%= link_to condition['content']['code']['coding'].first['display'], '/' + condition['title'].downcase %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Observations</h2>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Observations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @observations['entry'].each do |condition| %>
+      <tr>
+        <td><%= link_to condition['content']['name']['coding'].first['display'], '/' + condition['title'].downcase %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

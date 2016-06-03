@@ -1,0 +1,24 @@
+<p>
+  <%= form_tag nil, class: 'form-inline' do %>
+    <div class="form-group">
+      <%= text_field_tag :search_term, nil, class: 'form-control', placeholder: 'Patient' %>
+    </div>
+    <%= hidden_field_tag :resource, 'Patient' %>
+    <%= submit_tag :search, class: 'btn btn-default' %>
+  <% end %>
+</p>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @patients['entry'].each do |entry| %>
+      <tr>
+        <td><a href="/<%= entry['title'].downcase %>"><%= entry['content']['name'].first['given'].join(' ') %></a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

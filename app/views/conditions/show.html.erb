@@ -1,0 +1,32 @@
+<h2>Condition</h2>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Subject</td>
+      <td><%= link_to @condition['subject']['reference'], "/" + @condition['subject']['reference'].downcase %></td>
+    </tr>
+    <tr>
+      <td>Coding</td>
+      <td>
+        <p><b>System</b>: <%= @condition['code']['coding'].first['system'] %></p>
+        <p><b>Code</b>: <%= @condition['code']['coding'].first['code'] %></p>
+        <p><b>Display</b>: <%= @condition['code']['coding'].first['display'] %></p>
+      </td>
+    </tr>
+    <tr>
+      <td>Status</td>
+      <td><%= @condition['status'] %></td>
+    </tr>
+    <tr>
+      <td>On Date</td>
+      <td><%= @condition['onsetDate'] %></td>
+    </tr>
+  </tbody>
+</table>

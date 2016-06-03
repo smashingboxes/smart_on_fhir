@@ -1,0 +1,40 @@
+<h2>Observation</h2>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Subject</td>
+      <td><%= link_to @observation['subject']['reference'], "/" + @observation['subject']['reference'].downcase %></td>
+    </tr>
+    <tr>
+      <td>Coding</td>
+      <td>
+        <p><b>System</b>: <%= @observation['name']['coding'].first['system'] %></p>
+        <p><b>Code</b>: <%= @observation['name']['coding'].first['code'] %></p>
+        <p><b>Display</b>: <%= @observation['name']['coding'].first['display'] %></p>
+      </td>
+    </tr>
+    <% if @observation['valueQuantity'] %>
+      <tr>
+        <td>Quantity</td>
+        <td><%= @observation['valueQuantity']['value'] %> <%= @observation['valueQuantity']['units']%></td>
+      </tr>
+    <% end %>
+    <% if @observation['valueQuantity'] %>
+    <tr>
+      <td>Meaning</td>
+      <td><%= @observation['referenceRange'].first['meaning']['coding'].first['display'] %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td>On Date</td>
+      <td><%= @observation['appliesDateTime'] %></td>
+    </tr>
+  </tbody>
+</table>
